@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="DiffrentialLightPC.StatusPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiffrentialLightPC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Margin="1, 1, 1, 1">
+            <GroupBox.Header>
+                <Label Content="Status"/>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="사이클" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1"/>
+                    <Label Content="Step" Grid.Column="2"/>
+                    <TextBlock Grid.Column="3"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Step" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="1ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="2ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="3ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="4ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="5ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="6ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="7ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="8ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="9ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="10ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="11ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="12ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="13ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="14ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="15ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="16ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="17ch" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="18ch" Binding="{Binding Name}" />
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </Grid>
+                
+            </Grid>
+        </GroupBox>
+        
+        
+        
+        
+    </Grid>
+</UserControl>

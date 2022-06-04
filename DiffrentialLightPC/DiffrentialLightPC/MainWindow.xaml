@@ -5,76 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiffrentialLightPC"
         mc:Ignorable="d"
-        Title="DiffrentailLight" Height="450" Width="800">
+        Title="DiffrentailLight" Height="450" Width="1200">
+    <!-- Main Panel Start -->
     <DockPanel>
-
+        <!-- Control Panel Start -->
         <Grid DockPanel.Dock="Left">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <GroupBox Grid.Row="0" Margin="1, 1, 1, 1">
-                <GroupBox.Header>
-                    <Label Content="Connection"/>
-                </GroupBox.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="CONNECTION_cbPort" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" DropDownOpened="ComboBox_OnDropDownOpened" />
-                    <Button x:Name="CONNECTION_btnOpen" Grid.Row="1" Grid.Column="0" Content="Open" Click="Button_OnClick"/>
-                    <Button x:Name="CONNECTION_btnClose" Grid.Row="1" Grid.Column="1" Content="Close" Click="Button_OnClick"/>
-                </Grid>
-            </GroupBox>
-            <GroupBox Grid.Row="1" Margin="1, 1, 1, 1">
-                <GroupBox.Header>
-                    <Label Content="PWM"/>
-                </GroupBox.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="CH"/>
-                    <ComboBox x:Name="PWM_cbChannel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" />
-                    <Label Grid.Row="1" Grid.Column="0" Content="Freq"/>
-                    <TextBox x:Name="PWM_txtFreq" Grid.Row="1" Grid.Column="1" />
-                    <Button x:Name="PWM_btnFreq" Grid.Row="1" Grid.Column="2" Content="Set" Click="Button_OnClick"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Duty"/>
-                    <TextBox x:Name="PWM_txtDuty" Grid.Row="2" Grid.Column="1" />
-                    <Button x:Name="PWM_btnDuty" Grid.Row="2" Grid.Column="2" Content="Set" Click="Button_OnClick"/>
-                    
-                    
-                </Grid>
-            </GroupBox>
+            <local:ControlPanel />
         </Grid>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="0" Height="100">
-
-                <TextBox x:Name="INFO_txtLog"/>
-
-            </ScrollViewer>
-            <TextBox x:Name="INFO_txtCommand"  Grid.Row="1" KeyDown="TextBox_OnKeyDown" />
+            
         </Grid>
         <Grid>
-            <Label Content="여기에는 전체 채널별 LED 상태표시를 나타낼 예정..."/>
+            <local:StatusPanel/>
+
         </Grid>
     </DockPanel>
 </Window>
