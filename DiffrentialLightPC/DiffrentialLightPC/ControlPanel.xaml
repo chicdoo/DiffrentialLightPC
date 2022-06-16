@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DiffrentialLightPC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -14,6 +14,7 @@
         <!-- Control Panel Left Start -->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -28,12 +29,16 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="CONNECTION_cbPort" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" DropDownOpened="ComboBox_OnDropDownOpened" />
-                    <Button x:Name="CONNECTION_btnOpen" Grid.Row="1" Grid.Column="0" Content="Open" Click="Button_OnClick"/>
-                    <Button x:Name="CONNECTION_btnClose" Grid.Row="1" Grid.Column="1" Content="Close" Click="Button_OnClick"/>
+                    <Label Content="COM port" Grid.Row="0" Grid.Column="0" />
+                    <ComboBox x:Name="CONNECTION_cbPort" Grid.Row="0" Grid.Column="1" DropDownOpened="ComboBox_OnDropDownOpened" />
+                    <Button x:Name="CONNECTION_btnOpen" Grid.Row="0" Grid.Column="2" Content="Open" Click="Button_OnClick"/>
+                    <Label Content="Baudrate" Grid.Row="1" Grid.Column="0" />
+                    <ComboBox x:Name="CONNECTION_cbBaudrate" Grid.Row="1" Grid.Column="1" IsEnabled="False" />
+                    <Button x:Name="CONNECTION_btnClose" Grid.Row="1" Grid.Column="2" Content="Close" Click="Button_OnClick"/>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="1" Margin="1, 1, 1, 1">
@@ -45,7 +50,6 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
-                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -53,10 +57,17 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="CH"/>
-                    <ComboBox x:Name="PWM_cbChannel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" />
+                    <ComboBox x:Name="PWM_cbChannel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" >
+                        <ComboBoxItem Content="Channel 1" />
+                        <ComboBoxItem Content="Channel 2" />
+                        <ComboBoxItem Content="Channel 3" />
+                        <ComboBoxItem Content="Channel 4" />
+                        <ComboBoxItem Content="Channel 5" />
+                        <ComboBoxItem Content="Channel 6" />
+                    </ComboBox>
                     <Label Grid.Row="1" Grid.Column="0" Content="Freq"/>
-                    <TextBox x:Name="PWM_txtFreq" Grid.Row="1" Grid.Column="1" />
-                    <Button x:Name="PWM_btnFreq" Grid.Row="1" Grid.Column="2" Content="Set" Click="Button_OnClick"/>
+                    <TextBox x:Name="PWM_txtFreq" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
+                    <Button x:Name="PWM_btnFreq" Grid.Row="1" Grid.Column="2" Content="Set" Click="Button_OnClick" IsEnabled="False"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="Duty"/>
                     <TextBox x:Name="PWM_txtDuty" Grid.Row="2" Grid.Column="1" />
                     <Button x:Name="PWM_btnDuty" Grid.Row="2" Grid.Column="2" Content="Set" Click="Button_OnClick"/>
@@ -64,23 +75,67 @@
             </GroupBox>
             <GroupBox Grid.Row="2">
                 <GroupBox.Header>
+                    <Label Content="DAC"/>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="CH" Grid.Row="0" Grid.Column="0"/>
+                    <ComboBox x:Name="DAC_cbChannel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" >
+                        <ComboBoxItem Content="Channel 1" />
+                        <ComboBoxItem Content="Channel 2" />
+                        <ComboBoxItem Content="Channel 3" />
+                        <ComboBoxItem Content="Channel 4" />
+                        <ComboBoxItem Content="Channel 5" />
+                        <ComboBoxItem Content="Channel 6" />
+                        <ComboBoxItem Content="Channel 7" />
+                        <ComboBoxItem Content="Channel 8" />
+                        <ComboBoxItem Content="Channel 9" />
+                        <ComboBoxItem Content="Channel 10" />
+                        <ComboBoxItem Content="Channel 11" />
+                        <ComboBoxItem Content="Channel 12" />
+                        <ComboBoxItem Content="Channel 13" />
+                        <ComboBoxItem Content="Channel 14" />
+                        <ComboBoxItem Content="Channel 15" />
+                        <ComboBoxItem Content="Channel 16" />
+                        <ComboBoxItem Content="Channel 17" />
+                        <ComboBoxItem Content="Channel 18" />
+                    </ComboBox>
+                    <Label Content="DAC" Grid.Row="1" Grid.Column="0" />
+                    <TextBox x:Name="DAC_txtData" Grid.Row="1" Grid.Column="1"/>
+                    <Button x:Name="DAC_btnSet" Grid.Row="1" Grid.Column="2" Content="Set" Click="Button_OnClick" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="3">
+                <GroupBox.Header>
                     <Label Content="ETC"/>
                 </GroupBox.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="버전확인" Grid.Row="0" Grid.Column="0" />
-                    <Button Content="온도확인" Grid.Row="0" Grid.Column="1" />
-                    <Button Content="B/L상태확인" Grid.Row="1" Grid.Column="0" />
-                    <Button Content="전체Offset확인" Grid.Row="1" Grid.Column="1" />
-                    <Button Content="전체옵셋 100%" Grid.Row="1" Grid.Column="2" />
+                    <Button Content="버전확인" Grid.Row="0" Grid.Column="1"/>
+                    <Button Content="온도확인" Grid.Row="1" Grid.Column="1"/>
+                    <Button Content="B/L상태확인" Grid.Row="3" Grid.Column="1"/>
+                    <Button Content="전체Offset확인" Grid.Row="4" Grid.Column="1"/>
+                    <Button Content="전체옵셋 100%" Grid.Row="5" Grid.Column="1"/>
                 </Grid>
             </GroupBox>
         </Grid>
@@ -129,12 +184,20 @@
             </GroupBox>
             <GroupBox Grid.Row="2" Margin="1, 1, 1, 1">
                 <GroupBox.Header>
-                    <Label Content="Information"/>
+                    <Label Content="Log"/>
                 </GroupBox.Header>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBox />
+                    <TextBox x:Name="LOG_txtInfo"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Button Content="Save" Grid.Row="1" Grid.Column="0" />
+                    <Button Content="Clear" Grid.Row="1" Grid.Column="1" x:Name="LOG_btnClear" Click="Button_OnClick"/>
                 </Grid>
             </GroupBox>
         </Grid>

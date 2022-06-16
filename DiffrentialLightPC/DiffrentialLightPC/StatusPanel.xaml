@@ -6,13 +6,10 @@
              xmlns:local="clr-namespace:DiffrentialLightPC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
-    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Margin="1, 1, 1, 1">
             <GroupBox.Header>
@@ -20,8 +17,7 @@
             </GroupBox.Header>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
@@ -32,7 +28,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="사이클" Grid.Column="0"/>
-                    <TextBlock Grid.Column="1"/>
+                    <TextBlock Grid.Column="1" Foreground="{x:Null}" />
                     <Label Content="Step" Grid.Column="2"/>
                     <TextBlock Grid.Column="3"/>
                 </Grid>
@@ -67,12 +63,27 @@
                     </DataGrid>
 
                 </Grid>
-                
+
             </Grid>
         </GroupBox>
-        
-        
-        
-        
+        <GroupBox Grid.Row="1" Margin="1, 1, 1, 1">
+            <GroupBox.Header>
+                <Label Content="Offset"/>
+            </GroupBox.Header>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBox />
+                    <Button Content="변경"/>
+                    <Button Content="전체선택"/>
+                    <Button Content="전체취소"/>
+                    <Button Content="전류값"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>
