@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace DiffrentialLightPC
 {
@@ -23,6 +24,18 @@ namespace DiffrentialLightPC
         public InformationPanel()
         {
             InitializeComponent();
+
+
+
+
+            
+        }
+
+
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -22,12 +22,12 @@ namespace DiffrentialLightPC
     public partial class ControlPanel : UserControl
     {
         private const int SERIAL_PACKET_SIZE = 128;
-        private SerialPort mSerialPort;
 
         public ControlPanel()
         {
             InitializeComponent();
-            mSerialPort = new SerialPort();
+
+            Global.SP_port = new SerialPort();
         }
 
         private void ComboBox_OnDropDownOpened(object sender, EventArgs e)
@@ -44,18 +44,32 @@ namespace DiffrentialLightPC
         {
             if (sender == CONNECTION_btnOpen)
             {
-                Console.WriteLine("CONNECTION Open");
-                mSerialPort.PortName = CONNECTION_cbPort.Text;
-                mSerialPort.BaudRate = 115200;
-                mSerialPort.DataBits = 8;
-                mSerialPort.StopBits = StopBits.One;
-                mSerialPort.Parity = Parity.None;
-                mSerialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort_OnDataReceived);
-                mSerialPort.Open();
+                if (Global.SP_port.IsOpen == false && CONNECTION_cbPort.Text != "" )
+                {
+                    Console.WriteLine("CONNECTION Open");
+                    Global.SP_port.PortName = CONNECTION_cbPort.Text;
+                    Global.SP_port.BaudRate = 115200;
+                    Global.SP_port.DataBits = 8;
+                    Global.SP_port.StopBits = StopBits.One;
+                    Global.SP_port.Parity = Parity.None;
+                    Global.SP_port.DataReceived += new SerialDataReceivedEventHandler(SerialPort_OnDataReceived);
+                    Global.SP_port.Open();
+                    
+                    CONNECTION_tbStatus.Text = "Connected";
+                }
+                else
+                {
+                    Console.WriteLine("Connected already or not selecting port");
+                }
             }
             else if (sender == CONNECTION_btnClose)
             {
-                Console.WriteLine("CONNECTION Close");
+                if (Global.SP_port.IsOpen == true )
+                {
+                    Console.WriteLine("CONNECTION Close");
+                    Global.SP_port.Close();
+                    CONNECTION_tbStatus.Text = "Disconnected";
+                }
             }
             else if ( sender == PWM_btnDuty )
             {
@@ -112,11 +126,6 @@ namespace DiffrentialLightPC
             {
 
 
-
-            }
-            else if ( sender == LOG_btnClear )
-            {
-                LOG_txtInfo.Text = "";
             }
         }
 
@@ -125,11 +134,11 @@ namespace DiffrentialLightPC
             int readBytes;
             char[] buffer = new char[SERIAL_PACKET_SIZE];
 
-            readBytes = mSerialPort.Read(buffer, 0, SERIAL_PACKET_SIZE);
+            readBytes = Global.SP_port.Read(buffer, 0, SERIAL_PACKET_SIZE);
 
 
             Dispatcher.Invoke(new Action(delegate {
-                LOG_txtInfo.Text += new string(buffer, 0, readBytes);
+                //LOG_txtInfo.Text += new string(buffer, 0, readBytes);
             }));
         }
 
@@ -159,7 +168,7 @@ namespace DiffrentialLightPC
                 }
             }
 
-            mSerialPort.Write(data, 0, SERIAL_PACKET_SIZE);
+            Global.SP_port.Write(data, 0, SERIAL_PACKET_SIZE);
         }
     }
 }

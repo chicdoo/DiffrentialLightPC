@@ -5,23 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiffrentialLightPC"
         mc:Ignorable="d"
-        Title="DiffrentailLight" Height="900" Width="1800">
+        Title="DiffrentailLight" Height="900" Width="1400">
     <!-- Main Panel Start -->
     <DockPanel>
         <!-- Control Panel Start -->
         <Grid DockPanel.Dock="Left">
-            <local:ControlPanel Width="600"/>
-        </Grid>
-        <Grid DockPanel.Dock="Bottom">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
+            <local:ControlPanel Width="300"/>
         </Grid>
         <Grid>
-            <local:StatusPanel/>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <local:StatusPanel Grid.Row="0" />
+            <local:InformationPanel Grid.Row="1" />
         </Grid>
     </DockPanel>
 </Window>
