@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.IO;
+using System.Collections;
 
 namespace DiffrentialLightPC
 {
@@ -130,7 +131,6 @@ namespace DiffrentialLightPC
             Global.DT_test.Rows.Add("Fail");
 
             STATUS_dgTest.ItemsSource = Global.DT_test.DefaultView;
-
         }
 
 
@@ -174,6 +174,13 @@ namespace DiffrentialLightPC
             dialog.Filter = "CSV file|*.csv";
             dialog.Title = "Open an CSV File";
             dialog.ShowDialog();
+
+            Console.WriteLine("{0}", dialog.FileName);
+
+            if ( dialog.FileName != "" )
+            {
+                LoadTableFromCsv(dialog.FileName);
+            }
         }
 
         private void STATUS_btnSave_Click(object sender, RoutedEventArgs e)
@@ -205,32 +212,54 @@ namespace DiffrentialLightPC
                     writer.Write(",");
                 }
             }
-
             writer.Write(writer.NewLine);
-
-
-            writer.Close();
-
-            return;
 
             foreach ( DataRow row in Global.DT_table.Rows )
             {
-                for ( int i = 0; i < Global.DT_table.Columns.Count; i++)
+                for ( int i = 0; i < row.ItemArray.Length; i++ )
                 {
-                   // if ( !Convert.IsDBNull(row))
-
-
+                    writer.Write(row.ItemArray[i].ToString());
+                    if ( i < row.ItemArray.Length - 1 )
+                    {
+                        writer.Write(",");
+                    }
                 }
-
-
-
-
+                writer.Write(writer.NewLine);
             }
-            
+            writer.Close();
+        }
 
+        private void LoadTableFromCsv(string filename)
+        {
+            StreamReader reader;
+            List<string[]> data = new List<string[]>();
 
+            try
+            {
+                reader = new StreamReader(filename);
+            }
+            catch ( IOException e )
+            {
+                MessageBox.Show(e.Message, e.Source);
+                return;
+            }
 
+            string line;
 
+            while ( (line = reader.ReadLine()) != null )
+            {
+                data.Add(line.Split(','));
+            }
+
+            for ( int i = 1; i < Global.DT_table.Rows.Count; i++ )
+            {
+                for ( int j = 1; j < Global.DT_table.Columns.Count; j++ )
+                {
+                    Global.DT_table.Rows[i][j] = int.Parse(data[i][j]);
+                }
+            }
+
+            reader.Close();
         }
     }
 }
